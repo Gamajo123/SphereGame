@@ -4,8 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
-    private float HorizontalVelocity = 0f;
-    private float VercticalVelocity = 0f;
+    private float Jump = 0f;
 
     public GameObject Camera;
 
@@ -30,6 +29,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Jump");
+            Jump = 5f;
+        }
+        else
+        {
+            Jump = 0f;
+        }
 
         MyInput();
         /*
@@ -62,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector3(Camera.transform.forward.x * HorizontalVelocity, rb.linearVelocity.y, Camera.transform.right.z * VercticalVelocity);
         */
+
+        rb.AddForce(new Vector3(0,Jump), ForceMode.Force);
     }
 
     private void FixedUpdate()
@@ -79,6 +89,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movedirection = orientation.forward * VInput + orientation.right * HInput;
 
-        rb.AddForce(movedirection.normalized * speed * 10f, ForceMode.Force);
+        rb.AddForce(movedirection.normalized * speed * 6.5f, ForceMode.Force);
     }
 }
