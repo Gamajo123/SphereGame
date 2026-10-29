@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float Jump = 0f;
 
     public GameObject Camera;
+    bool CanJump = true;
 
 
     public Transform orientation;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log("Jump");
-            Jump = 5f;
+            Jump = 50f;
         }
         else
         {
@@ -70,8 +71,11 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector3(Camera.transform.forward.x * HorizontalVelocity, rb.linearVelocity.y, Camera.transform.right.z * VercticalVelocity);
         */
-
-        rb.AddForce(new Vector3(0,Jump), ForceMode.Force);
+        if (CanJump)
+        {
+            rb.AddForce(new Vector3(0, Jump), ForceMode.Force);
+        }
+        
     }
 
     private void FixedUpdate()
@@ -90,5 +94,24 @@ public class PlayerMovement : MonoBehaviour
         movedirection = orientation.forward * VInput + orientation.right * HInput;
 
         rb.AddForce(movedirection.normalized * speed * 6.5f, ForceMode.Force);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CanJump TouchGround = other.gameObject.GetComponent<CanJump>();
+        
+
+        if (TouchGround)
+        {
+            CanJump = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        CanJump TouchGround = other.gameObject.GetComponent<CanJump>();
+
+        CanJump = false;
+
     }
 }

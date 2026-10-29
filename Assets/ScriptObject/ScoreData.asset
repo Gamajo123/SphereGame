@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5fad506da312b40b94b86e59717e22, type: 3}
   m_Name: ScoreData
   m_EditorClassIdentifier: Assembly-CSharp::ScoreData
+  Score: 10000
