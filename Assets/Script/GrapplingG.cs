@@ -6,7 +6,7 @@ public class GrapplingG : MonoBehaviour
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
     public Transform gunTip, camera, player;
-    private float maxDistance = 1000f;
+    private float maxDistance = 20f;
     private SpringJoint joint;
 
     void Awake(){
@@ -31,6 +31,7 @@ public class GrapplingG : MonoBehaviour
     }
 
     void StartGrapple(){
+
         RaycastHit hit;
         if(Physics.Raycast(camera.position,camera.forward,out hit, maxDistance)){
             grapplePoint = hit.point;
@@ -45,7 +46,7 @@ public class GrapplingG : MonoBehaviour
 
             joint.spring = 4.5f;
             joint.damper = 7f;
-            joint.massScale = 4.5f;
+            joint.massScale = 74.5f;
 
             lr.positionCount = 2;
         }
