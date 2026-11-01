@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Jump");
             Jump = 50f;
         }
         else
@@ -41,36 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MyInput();
-        /*
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            HorizontalVelocity = 1f;
-        }
-        else if(Input.GetKey(KeyCode.LeftArrow))
-        {
-            HorizontalVelocity = -1f;
-        }
-        else
-        {
-            HorizontalVelocity = 0f;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            VercticalVelocity = 1f;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            VercticalVelocity = -1f;
-        }
-        else
-        {           
-            VercticalVelocity = 0f;
-        }
         
-
-        rb.linearVelocity = new Vector3(Camera.transform.forward.x * HorizontalVelocity, rb.linearVelocity.y, Camera.transform.right.z * VercticalVelocity);
-        */
         if (CanJump)
         {
             rb.AddForce(new Vector3(0, Jump), ForceMode.Force);
@@ -99,7 +69,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CanJump TouchGround = other.gameObject.GetComponent<CanJump>();
-        
+
+        Debug.Log(CanJump);
 
         if (TouchGround)
         {
@@ -109,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(CanJump);
+
         CanJump TouchGround = other.gameObject.GetComponent<CanJump>();
 
         CanJump = false;
