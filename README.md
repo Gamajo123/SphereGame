@@ -6,6 +6,8 @@ Leur maître fait une sieste et il décide de partir a ce moment la sauf qu’il
 
 Vous avez un score de base qui est de 10000 mais plus vous touchez de conserve plus vous perdez de points. Si il tombe à 0 vous avez perdu.
 
+Vous aurez des cubes jaunes sur le passage qui vous permettra d'augmenter votre score.
+
 WASD: Pour bouger (j'arrive pas a changer)
 Espace: Jump
 Click Gauche: Grappin
