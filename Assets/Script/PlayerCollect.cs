@@ -7,6 +7,9 @@ public class PlayerCollect : MonoBehaviour
     [SerializeField ] private UIController uiController;
     [SerializeField ] private SpawnController spawnController;
 
+    public AudioClip Can;
+    public AudioClip Collect;
+
     bool stopmalus = false;
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +22,7 @@ public class PlayerCollect : MonoBehaviour
         {
             ScoreData.Score = ScoreData.Score + target.ScoreValue;
             uiController.UpdateScoreText(ScoreData.Score);
-            
+            GetComponent<AudioSource>().clip = Collect;
             GetComponent<AudioSource>().Play();
             Debug.Log("Target");
             Destroy(other.gameObject);
@@ -32,6 +35,9 @@ public class PlayerCollect : MonoBehaviour
             {
                 ScoreData.Score = ScoreData.Score + Malus.ScoreValue;
                 uiController.UpdateScoreText(ScoreData.Score);
+
+                GetComponent<AudioSource>().clip = Can;
+                GetComponent<AudioSource>().Play();
 
                 Malus.GetComponent<ColorFeedback>().ChangeMaterial();
                 GetComponent<ReturnNormal>().ReturnStart();
